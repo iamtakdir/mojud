@@ -1,0 +1,28 @@
+{%extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class="">
+
+
+    <div class="" style="padding-left: 10rem; padding-right: 10rem;">
+
+        <div class="" role="alert">
+            <h2 class="text-center display-4 mt-4"> <strong> How Many Items do you want to add ? </strong></h2>
+            <hr>
+        </div>
+
+        <h3>{{message}}</h3>
+
+        <form action="{% url 'multi_stock' %}" method="GET">
+            {% csrf_token %}
+
+            {{form |crispy}}
+
+            <button type="submit" class="btn btn-info ">Submit</button>
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}
