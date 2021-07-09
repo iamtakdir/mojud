@@ -283,3 +283,4 @@ class Total_sale(ListView):
 class Sale_details(DetailView):
     template_name ='stock/sale_details.html'
     queryset=Sale.objects.all()
+
