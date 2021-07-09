@@ -29,6 +29,7 @@ router.register(r'supplier', views.SupplierViewset, basename='supplier'),
 router.register(r'category', views.CategoryViewset, basename='category'),
 router.register(r'purchase', views.Purchase_ApiView, basename='purchase'),
 router.register(r'customer', views.CustomerViewset, basename='customer'),
+router.register(r'sale', views.Sale_ApiView, basename='sale'),
 
 
 urlpatterns=[

@@ -44,3 +44,17 @@ class Customer_Serializer(serializers.ModelSerializer):
     class Meta:
         model= Customer
         fields = '__all__'
+
+        
+
+class Sales_Serializer(serializers.ModelSerializer):
+
+    def __init__ (self, *args, **kwargs):
+
+        super().__init__(*args, **kwargs)
+
+        self.fields['stock'].queryset = Stock.objects.filter(is_deleted= False)
+
+    class Meta:
+        model = Sale
+        fields=['customer','stock', 'sale_quantity']

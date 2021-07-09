@@ -108,9 +108,39 @@ class Purchase_ApiView(viewsets.ModelViewSet):
         serializer.save()
 
 
-# todos : sales , customer 
+# todos : sales
 
 class CustomerViewset(viewsets.ModelViewSet):
 
     queryset = Customer.objects.all()
     serializer_class= Customer_Serializer
+
+
+class Sale_ApiView(viewsets.ModelViewSet):
+
+    queryset = Sale.objects.all()
+    serializer_class = Sales_Serializer
+
+    def perform_create(self, serializer):
+
+        data = serializer.validated_data
+
+        print('--------data---------', data['sale_quantity'])
+
+
+        
+        sale_item = data['sale_quantity']
+        stock_item = data['stock']
+
+        print ("=======data", sale_item, stock_item)
+
+        stock = generics.get_object_or_404(Stock, item_name = stock_item)
+
+        stock.quantity -= sale_item
+
+        print(stock.quantity)
+
+        
+
+        stock.save()
+        serializer.save()
