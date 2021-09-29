@@ -92,12 +92,27 @@ REST_FRAMEWORK = { 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoS
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
+
+if DEBUG == False:
+    DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",},
+        'NAME': 'potatosq_enventory',
+        'USER': 'potatosq_shishir',
+        'PASSWORD': '@goresource@2020',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
+
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation
@@ -136,7 +151,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
+if DEBUG == True:
+    STATIC_URL = '/static/'
+    STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
+else:
+    STATIC_URL = '/static/'
+    STATIC_ROOT = "../enventory.iamtakdir.xyz/static/"
+    STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

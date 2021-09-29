@@ -38,10 +38,19 @@
             font-size: 15px;
             font-weight: bold;
         }
+
+        .high {
+            margin-top: 50px;
+        }
     </style>
 </head>
 
 <body>
+
+    <center>
+        <h1 class="display-3 high"> ENVENTORY SYSTEM </h1>
+        <p class="lead">Developer Version 0.5 <a href="iamtakdir@gmail.com">Contact Dev</a></p>
+    </center>
     <div class="login-form">
 
 
@@ -49,6 +58,10 @@
 
             {% csrf_token %}
             <h2 class="text-center">Log in</h2>
+            <ul>
+                <li>Demo User : demoname </li>
+                <li>Demo Password : demopass </li>
+            </ul>
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Username" required="required" name="username">
             </div>
@@ -57,6 +70,7 @@
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-block">Log in</button>
+
             </div>
 
         </form>
